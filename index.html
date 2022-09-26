@@ -10,20 +10,22 @@
   <body>
     <div class="calculator">
       <div class="display">
-        <span>a</span>
+        <span class="display-text">a</span>
+        <br>
+        <span class="display-subtext">b</span>
       </div>
       <div class="keyboard">
         <div class="keyboard-operators">
-          <button class="button"><span>+</span></button>
-          <button class="button"><span>-</span></button>
-          <button class="button"><span>&times;</span></button>
-          <button class="button"><span>/</span></button>
+          <button data-key ="operator"class="button"><span>+</span></button>
+          <button data-key ="operator"class="button"><span>-</span></button>
+          <button data-key ="operator"class="button"><span>&times;</span></button>
+          <button data-key ="operator"class="button"><span>/</span></button>
         </div>
         <div class="keyboard-numbers">
           <button class="button"><span>7</span></button>
           <button class="button"><span>8</span></button>
           <button class="button"><span>9</span></button>
-          <button class="button button-equals"><span>=</span></button>
+          <button data-key ="equal" class="button button-equals"><span>=</span></button>
           <button class="button"><span>4</span></button>
           <button class="button"><span>5</span></button>
           <button class="button"><span>6</span></button>
@@ -32,7 +34,7 @@
           <button class="button"><span>3</span></button>
           <button class="button"><span>0</span></button>
           <button class="button"><span>.</span></button>
-          <button class="button"><span>C</span></button>
+          <button data-key ="clear"class="button"><span>C</span></button>
       </div>
       </div>
     </div>
