@@ -6,13 +6,18 @@
 
 body {
   font-size: 62.5%;
-  margin-top: 10em;
+  display: flex;
+  justify-content: center;
+  margin-top: 5em;
 }
 
 .calculator {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #a5a5a5;
+  padding: 0.5em;
 }
 
 .keyboard {
@@ -24,26 +29,70 @@ body {
   display: flex;
 }
 
+.keyboard-operators .button {
+  background-color: #e8e8e8;
+}
+
 .keyboard-numbers {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
-.button-equals {
+.keyboard-numbers .button {
+  background-color: #f9f9f9;
+}
+
+.keyboard-numbers .button-equals {
   grid-column: 4/5;
   grid-row: 1/5;
+  color: white;
+  background-color: #7a353e;
 }
 
 .button {
-  width: 10em;
-  min-height: 10em;
+  width: 15em;
+  min-height: 5em;
   height: auto;
+  color: #252323;
+  transition: 0.3s;
+  border-style: solid;
+}
+
+.button:hover {
+  background-color: #8080802c;
+}
+
+.button:checked {
+  background-color: white;
+}
+
+.button-bottom-radius-left {
+  border-bottom-left-radius: 20px;
+}
+
+.button-bottom-radius-right {
+  border-bottom-right-radius: 20px;
 }
 
 .button span {
-  font-size: 5em;
+  font-size: 3em;
 }
 
 .display span {
-  font-size: 10em;
+  color: white;
+  font-size: 5em;
+  text-align: right;
+  margin: 0.2em 0.4em;
+}
+
+.display {
+  inline-size: 80em;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  background-color: #252323;
+  min-width: auto;
+  min-height: 20em;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }

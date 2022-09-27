@@ -17,15 +17,15 @@ function displayMech() {
   if (displayNumber == undefined) {
     displayNumber = displayMemory;
   } else {
-    if (displayMemory == 0) {
+    /* if (displayMemory == 0) {
       displayNumber = "fail";
-    } else {
-      displayNumber = operate(
-        operator,
-        Number(displayNumber),
-        Number(displayMemory)
-      );
-    }
+    } else { */
+    displayNumber = operate(
+      operator,
+      Number(displayNumber),
+      Number(displayMemory)
+    );
+    /* } */
   }
   displayMemory = "";
   displaySubText.textContent = displayNumber !== undefined ? displayNumber : "";
