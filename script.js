@@ -17,15 +17,11 @@ function displayMech() {
   if (displayNumber == undefined) {
     displayNumber = displayMemory;
   } else {
-    /* if (displayMemory == 0) {
-      displayNumber = "fail";
-    } else { */
     displayNumber = operate(
       operator,
       Number(displayNumber),
       Number(displayMemory)
     );
-    /* } */
   }
   displayMemory = "";
   displaySubText.textContent = displayNumber !== undefined ? displayNumber : "";
@@ -48,9 +44,11 @@ function operate(operator, displayNumber, displayMemory) {
 
 function display(key) {
   if (key.dataset.key == "operator") {
-    if (displayMemory !== undefined) {
+    if (displayMemory !== "") {
       displayShow += key.textContent;
       displayMech();
+    } else {
+      displayShow += key.textContent;
     }
   } else if (key.dataset.key == "equal") {
     console.log(displayNumber, displayMemory);
