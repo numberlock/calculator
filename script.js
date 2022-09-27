@@ -17,11 +17,15 @@ function displayMech() {
   if (displayNumber == undefined) {
     displayNumber = displayMemory;
   } else {
-    displayNumber = operate(
-      operator,
-      Number(displayNumber),
-      Number(displayMemory)
-    );
+    if (displayMemory == 0) {
+      displayNumber = "fail";
+    } else {
+      displayNumber = operate(
+        operator,
+        Number(displayNumber),
+        Number(displayMemory)
+      );
+    }
   }
   displayMemory = "";
   displaySubText.textContent = displayNumber !== undefined ? displayNumber : "";
@@ -29,10 +33,10 @@ function displayMech() {
 
 const clear = () => {
   displayMemory = "";
-  displayShow = "0";
+  displayShow = "";
   operator = "";
   displayNumber = "";
-  displaySubText.textContent = "0";
+  displaySubText.textContent = "";
 };
 
 function operate(operator, displayNumber, displayMemory) {
