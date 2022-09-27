@@ -44,15 +44,14 @@ const operate = function (operator, numOne, numTwo) {
 let displayShow = "";
 let displayMemory = "";
 let operator, numOne, numTwo;
+let storage = 0;
 
 function display(key) {
   if (key.dataset.key == "operator") {
     displayShow += key.textContent;
-    numOne = displayMemory;
-    displayMemory = "";
+    displayMech();
   } else if (key.dataset.key == "equal") {
-    numTwo = displayMemory;
-    displayShow = operate(operator, Number(numOne), Number(numTwo));
+    displayMech();
   } else if (key.dataset.key == "clear") {
     clear();
   } else {
@@ -78,4 +77,19 @@ const clear = () => {
   operator = "";
   numOne = "";
   numTwo = "";
+  displaySubText.textContent = "";
 };
+
+function numbers() {
+  displayMemory = "";
+}
+
+function displayMech() {
+  if (numOne == undefined) {
+    numOne = displayMemory;
+  } else {
+    numOne = operate(operator, Number(numOne), Number(displayMemory));
+  }
+  displayMemory = "";
+  displaySubText.textContent = numOne !== undefined ? numOne : "";
+}
