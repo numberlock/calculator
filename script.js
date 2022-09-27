@@ -1,56 +1,55 @@
 "use strict";
+let displayShow = "";
+let displayMemory = "";
+let operator, displayNumber;
 const displayText = document.querySelector(".display-text");
 const displaySubText = document.querySelector(".display-subtext");
 const buttons = document.querySelectorAll(".button");
 
-const add = function (number) {
-  let sum = 0;
-  for (let i = 0; i < number.length; i++) {
-    sum += number[i];
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    display(button);
+    if (button.dataset.key == "operator") operator = button.textContent;
+  });
+});
+
+function displayMech() {
+  if (displayNumber == undefined) {
+    displayNumber = displayMemory;
+  } else {
+    displayNumber = operate(
+      operator,
+      Number(displayNumber),
+      Number(displayMemory)
+    );
   }
-  return sum;
-};
-const subtract = function (number) {
-  let sum = number[0];
-  for (let i = 1; i < number.length; i++) {
-    sum -= number[i];
-  }
-  return sum;
+  displayMemory = "";
+  displaySubText.textContent = displayNumber !== undefined ? displayNumber : "";
+}
+
+const clear = () => {
+  displayMemory = "";
+  displayShow = "0";
+  operator = "";
+  displayNumber = "";
+  displaySubText.textContent = "0";
 };
 
-const multiply = function (number) {
-  let sum = number[0];
-  for (let i = 1; i < number.length; i++) {
-    sum *= number[i];
-  }
-  return sum;
-};
-
-const devide = function (number) {
-  let sum = number[0];
-  for (let i = 1; i < number.length; i++) {
-    sum /= number[i];
-  }
-  return sum;
-};
-
-const operate = function (operator, numOne, numTwo) {
-  if (operator == "add") return add([numOne, numTwo]);
-  if (operator == "subtract") return subtract([numOne, numTwo]);
-  if (operator == "multiply") return multiply([numOne, numTwo]);
-  if (operator == "devide") return devide([numOne, numTwo]);
-};
-
-let displayShow = "";
-let displayMemory = "";
-let operator, numOne, numTwo;
-let storage = 0;
+function operate(operator, displayNumber, displayMemory) {
+  if (operator == "+") return displayNumber + displayMemory;
+  if (operator == "-") return displayNumber - displayMemory;
+  if (operator == "×") return displayNumber * displayMemory;
+  if (operator == "/") return displayNumber / displayMemory;
+}
 
 function display(key) {
   if (key.dataset.key == "operator") {
-    displayShow += key.textContent;
-    displayMech();
+    if (displayMemory !== undefined) {
+      displayShow += key.textContent;
+      displayMech();
+    }
   } else if (key.dataset.key == "equal") {
+    console.log(displayNumber, displayMemory);
     displayMech();
   } else if (key.dataset.key == "clear") {
     clear();
@@ -59,37 +58,4 @@ function display(key) {
     displayMemory += key.textContent;
   }
   displayText.textContent = displayShow;
-}
-
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    display(button);
-    if (button.textContent == "+") operator = "add";
-    if (button.textContent == "-") operator = "subtract";
-    if (button.textContent == "×") operator = "multiply";
-    if (button.textContent == "/") operator = "devide";
-  });
-});
-
-const clear = () => {
-  displayMemory = "";
-  displayShow = "";
-  operator = "";
-  numOne = "";
-  numTwo = "";
-  displaySubText.textContent = "";
-};
-
-function numbers() {
-  displayMemory = "";
-}
-
-function displayMech() {
-  if (numOne == undefined) {
-    numOne = displayMemory;
-  } else {
-    numOne = operate(operator, Number(numOne), Number(displayMemory));
-  }
-  displayMemory = "";
-  displaySubText.textContent = numOne !== undefined ? numOne : "";
 }
